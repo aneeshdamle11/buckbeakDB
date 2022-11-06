@@ -110,6 +110,11 @@ def ticket_gen():
             price = int(c.fetchone()[0])
             conn.commit()
             print("After fetching price")
+            # After fetching price, increase the price as is the norm
+            c.execute(f"UPDATE flight \
+                           SET price = price + 100 \
+                         WHERE flight_id = {flight_id}")
+            conn.commit()
 
             import datetime
             e = datetime.datetime.now()
