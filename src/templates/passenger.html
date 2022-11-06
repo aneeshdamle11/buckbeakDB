@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Airline Mate!</title>
+</head>
+<body>
+    <h1>Passenger Information for Flight {{id}} </h1>
+
+    <h3>Price: {{price}}</h3>
+    <form action="/ticket_gen" method='post'>
+
+            <b>First name</b> <input type="text" name="first_name"><br>
+            <b>Last name</b> <input type="text" name="last_name"><br>
+            <b>Email ID</b> <input type="text" name="email"><br>
+            <b>Contact</b> <input type="text" name="phone"><br>
+            <b>Enter flightID again</b> <input type="text" name="id"><br>
+
+            <input type="submit" name="submit" value="Make payment">
+            <input type="reset" name="reset" value="Reset"><br>
+    </form>
+
+    <p>Go to <a href="{{url_for('index')}}">main page</a></p>
+</body>
+</html>
