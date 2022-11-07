@@ -13,16 +13,16 @@
 
                 <a href="{{ url_for('logout') }}"><i class="fa fa-sign-out"></i>Logout</a>
             </div>
-            <h2>Hello {{ username }}!</h2>
+            <h1 style="color:blue;font-size:40px;">Hello {{ username }}!</h1>
             <!-- Adding jets -->
             <form action='add_jets' method='post'>
               <b>Jet Name</b> <input class="w3-input w3-border" type="text" 
-                 placeholder="Name of the jet" name="jet_name"><br>
+                    placeholder="Name of the jet" name="jet_name"><br><br>
               <b>Jet status</b> <input class="w3-input w3-border" type="text" 
-                 placeholder="Working(1) or Not working(0)" name="status"><br>
+                 placeholder="Working(1) or Not working(0)" name="status"><br><br>
               <b>Capacity</b> <input class="w3-input w3-border" type="text" 
-                 placeholder= (DD-MM-YYYY)" name="capacity"><br>
-              <input type="submit" name="submit" value="Submit">
+                placeholder= (DD-MM-YYYY)" name="capacity"><br><br>
+              <input type="submit" name="submit" value="Submit ">
               <input type="reset" name="reset" value="Reset"><br>
             </form>
         </nav>

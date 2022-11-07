@@ -35,11 +35,13 @@ def create_tables(c):
 
     # passenger
     c.execute("CREATE TABLE passenger (\
-               ticket_id INTEGER NOT NULL,\
+               ticket_id INTEGER NOT NULL, \
                first_name VARCHAR(20) NOT NULL,\
                last_name VARCHAR(20) NOT NULL,\
                seat_no VARCHAR(50) NOT NULL,\
-               FOREIGN KEY (ticket_id) REFERENCES ticket(ticket_id));")
+               PRIMARY KEY (ticket_id, seat_no), \
+               FOREIGN KEY (ticket_id) REFERENCES ticket(ticket_id)\
+               ON DELETE CASCADE ON UPDATE CASCADE)")
     
     # flight
     c.execute("CREATE TABLE flight(\
@@ -58,25 +60,29 @@ def create_tables(c):
                ticket_id INTEGER NOT NULL, \
                flight_id INTEGER NOT NULL,\
                PRIMARY KEY (ticket_id),\
-               FOREIGN KEY (ticket_id) REFERENCES ticket(ticket_id),\
-               FOREIGN KEY (flight_id) REFERENCES flight(flight_id));")
+               FOREIGN KEY (ticket_id) REFERENCES ticket(ticket_id)\
+               ON DELETE CASCADE ON UPDATE CASCADE, \
+               FOREIGN KEY (flight_id) REFERENCES flight(flight_id)\
+               ON DELETE CASCADE ON UPDATE CASCADE)")\
 
     # jet
     c.execute("CREATE TABLE jet (\
                jet_id INTEGER UNIQUE NOT NULL AUTO_INCREMENT,\
-               name VARCHAR(10),\
+               name VARCHAR(20),\
                status CHAR(1) NOT NULL,\
                capacity INTEGER NOT NULL,\
                PRIMARY KEY (jet_id));")
 
     # flying_by --> flight to jet
     c.execute("CREATE TABLE flying_by (\
-               flight_id INTEGER UNIQUE NOT NULL AUTO_INCREMENT,\
-               jet_id INTEGER UNIQUE NOT NULL,\
+               flight_id INTEGER UNIQUE NOT NULL AUTO_INCREMENT, \
+               jet_id INTEGER NOT NULL, \
                available_seats INTEGER NOT NULL,\
                PRIMARY KEY (flight_id),\
-               FOREIGN KEY (flight_id) REFERENCES flight(flight_id),\
-               FOREIGN KEY (jet_id) REFERENCES jet(jet_id));")
+               FOREIGN KEY (flight_id) REFERENCES flight(flight_id)\
+               ON DELETE CASCADE ON UPDATE CASCADE, \
+               FOREIGN KEY (jet_id) REFERENCES jet(jet_id)\
+               ON DELETE CASCADE ON UPDATE CASCADE);")
 
     # admin log
     c.execute("CREATE TABLE admin_logs (\
@@ -99,20 +105,36 @@ def insert_vals(conn, c):
     insert_into_jet = 'INSERT INTO jet (name, status, capacity)'
 
     c.execute(insert_into_flight + 'VALUES \
-    ("PUNE", "DELHI", "06/11/2022","23:00", "07/11/2022", "04:00", "8000");')
+    ("PUNE", "DELHI", "07/11/2022","23:00", "08/11/2022", "01:00", "8000");')
 
     c.execute(insert_into_flight + 'VALUES \
-    ("PUNE", "DELHI", "06/11/2022","18:00", "07/11/2022", "00:00", "7000")')
+    ("PUNE", "DELHI", "07/11/2022","18:00", "07/11/2022", "20:00", "7000")')
 
     c.execute(insert_into_flight + 'VALUES \
-    ("BANGALORE", "DELHI", "06/11/2022","23:00", "07/11/2022", "16:00", "6000")')
+    ("BANGALORE", "DELHI", "07/11/2022","23:00", "08/11/2022", "01:30", "6000")')
 
     c.execute(insert_into_flight + 'VALUES \
-  ("BANGALORE", "CHENNAI", "06/11/2022","23:00", "07/11/2022", "16:00", "9000")')
+  ("BANGALORE", "DELHI", "07/11/2022","20:00", "07/11/2022", "22:00", "9000")')
+
+    c.execute(insert_into_flight + 'VALUES \
+  ("BANGALORE", "DELHI", "07/11/2022","17:00", "07/11/2022", "19:00", "9000")')
+
+    c.execute(insert_into_flight + 'VALUES \
+  ("DELHI", "CHENNAI", "07/11/2022","23:00", "08/11/2022", "01:00", "9000")')
+
 
     c.execute(insert_into_jet + ' VALUES ("AIRBUS", 1, 100)')
+    c.execute(insert_into_jet + ' VALUES ("BOEING", 1, 250)')
+    c.execute(insert_into_jet + ' VALUES ("INDIGO", 1, 200)')
+    c.execute(insert_into_jet + ' VALUES ("AIRINDIA", 1, 200)')
+    c.execute(insert_into_jet + ' VALUES ("LUFTHANSA", 1, 225)')
 
     c.execute(insert_into_flying_by + ' VALUES (1, 1, 100)')
+    c.execute(insert_into_flying_by + ' VALUES (2, 2, 250)')
+    c.execute(insert_into_flying_by + ' VALUES (3, 3, 200)')
+    c.execute(insert_into_flying_by + ' VALUES (4, 4, 200)')
+    c.execute(insert_into_flying_by + ' VALUES (5, 5, 225)')
+    c.execute(insert_into_flying_by + ' VALUES (6, 1, 225)')
 
     conn.commit() # apply changes
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
+<head>
         <title>Airlines Mate!</title>
         <style>
             table {
@@ -16,10 +16,9 @@
 
             tr:nth-child(even) {background-color: #f2f2f2;}
         </style>
-    <\head>
 
     <body>
-    <h2> Available flights </h2>
+    <h2> Available flights</h2>
     <table> 
         <thead> 
         <tr> 
@@ -47,14 +46,13 @@
                 </tr> 
             {% endfor %} 
             <form action="/passenger" method="post">
-                <b>Choose a flight</b> <input type="text" name="flight_id" 
-                   placeholder="Enter flight ID"><br>
-                <b>Total passengers</b> <input type="text" name="passenger_count"
-                   placeholder="Enter number of passengers"><br>
+                <b>Choose a flight </b> <input type="text" name="flight_id" 
+                    placeholder="Enter flight ID"><br><br>
+                <b>Total passengers </b> <input type="text" name="passenger_count"
+                    placeholder="Enter number of passengers"><br><br><br>
                 <input type="submit" name="submit" value="Submit">
-                <input type="reset" name="reset" value="Reset"><br>
+                <input type="reset" name="reset" value="Reset"><br><br><br>
             </form>
-
         </tbody> 
     </table> 
     <p>Go to <a href="{{url_for('index')}}">main page</a></p>
