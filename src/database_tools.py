@@ -4,8 +4,8 @@ import mysql.connector as mc
 # connect to mydatabase (database will be created if DNE)
 def authorise_database():
     conn = mc.connect(host='localhost',
-                      user='root', 
-                      password='Lqsym@11',
+                      user='buckbeak',
+                    # password='optional',
                       db='airlineDB')
     return conn
 
