@@ -1,8 +1,8 @@
 This project plays a part in understanding and implementing some of the interesting concepts from the Database Management System coursework.
 It aims to provide an idea on how to aid airline customers in ticket bookings, and, from a CS perspective, how much of an important role does a Database play.
+The name is inspired by a timeless classic on platform 9-3/4:)
 
 ## Setup
-
 Install the following packages:
 - python
 > venv
